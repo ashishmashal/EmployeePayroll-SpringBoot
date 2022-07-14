@@ -93,6 +93,8 @@ public class EmployeeService implements iEmployeeService {
     public Employee updateEmployeePayrollData(int empId, EmployeeDTO employeeDTO){
             Employee empData = this.getEmployeePayrollDataById(empId);
             empData.setName(employeeDTO.name);
+            empData.setDepartment(employeeDTO.department);
+            empData.setGender(employeeDTO.gender);
             empData.setSalary(employeeDTO.salary);
             employeeList.set(empId - 1, empData);
             return empData;
