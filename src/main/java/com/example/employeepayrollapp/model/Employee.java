@@ -32,8 +32,8 @@ public class Employee {
       this.salary = employeeDTO.salary;
   }
 
-    @Id
-    @GeneratedValue
+    @Id //primary key
+    @GeneratedValue //auto value
 
     public int getId() {
         return id;

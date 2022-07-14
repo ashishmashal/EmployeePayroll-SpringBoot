@@ -1,17 +1,46 @@
 package com.example.employeepayrollapp.service;
 
+import com.example.employeepayrollapp.dto.EmployeeDTO;
 import com.example.employeepayrollapp.model.Employee;
 
 import java.util.List;
 
 public interface iEmployeeService {
-    public String employeeMessage();
+    /*@Override
+    public String employeeMessage(){
+        return "Hello World!";
+    }
 
-    Employee findEmployeeById(Integer id);
+    @Override
+    public Employee findEmployeeById(Integer id) {
+        return employeeRepository.findById(id).orElse(null);
+    }
+    @Override
+    public Employee saveEmployees(Employee employee){
+        return employeeRepository.save(employee);
+    }
+    @Override
+    public List<Employee> findEmployees() {
+        return employeeRepository.findAll();
+    }
+    @Override
+    public Employee editEmployee(Employee employee, Integer id) {
+        Employee existingGreet = employeeRepository.findById(id).orElse(null);
+        if (existingGreet != null) {
+            existingGreet.setName(employee.getName()); ;
+            return employeeRepository.save(existingGreet);
+        }else return null;
+    }
 
-    Employee saveEmployees(Employee employee);
+    public String deleteEmployee(Integer id) {
+        employeeRepository.deleteById(id);
+        return "Data Deleted";
+    }*/
+    List<Employee> getEmployeeData();
 
-    List<Employee> findEmployees();
+    Employee getEmployeePayrollDataById(int empId);
 
-    Employee editEmployee(Employee employee, Integer id);
+    Employee createEmployeePayrollData(EmployeeDTO employeeDTO);
+
+    Employee updateEmployeePayrollData(EmployeeDTO employeeDTO);
 }
