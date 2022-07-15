@@ -4,12 +4,12 @@ import com.example.employeepayrollapp.dto.EmployeeDTO;
 import com.example.employeepayrollapp.dto.ResponseDTO;
 import com.example.employeepayrollapp.model.Employee;
 import com.example.employeepayrollapp.service.EmployeeService;
-import com.example.employeepayrollapp.service.iEmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -88,8 +88,8 @@ public class EmployeeController {
         ResponseDTO respOTO= new ResponseDTO("Deleted Successfully", "Deleted id: "+empId);
         return new ResponseEntity<ResponseDTO>(respOTO, HttpStatus.OK);
         }*/
-
-    /***************UC4*****************************/
+        //ResponseEntity check Status and store in json format
+    /*************** UC4 *****************************/
     @RequestMapping(value = {"","/", "/get"})
     public ResponseEntity<ResponseDTO> getEmployeePayrollData() {
         empDatalist = service.getEmployeeData();
@@ -106,7 +106,7 @@ public class EmployeeController {
 
    @PostMapping("/add")
     public ResponseEntity<ResponseDTO> createEmployeePayrollData(
-            @RequestBody EmployeeDTO empPayrollDTO) {
+           @Valid @RequestBody EmployeeDTO empPayrollDTO) {
         Employee empData = null;
         empData = service.createEmployeePayrollData(empPayrollDTO);
         ResponseDTO respOTO= new ResponseDTO("Created Employee Payroll Data Successfully", empData);
@@ -114,7 +114,7 @@ public class EmployeeController {
     }
 
     @PutMapping("/update/{empID}")
-    public ResponseEntity<ResponseDTO> updateEmployeePayrollData(@PathVariable("empID") int empID, @RequestBody EmployeeDTO employeeDTO) {
+    public ResponseEntity<ResponseDTO> updateEmployeePayrollData(@PathVariable("empID") int empID, @Valid @RequestBody EmployeeDTO employeeDTO) {
         Employee empData = null;
         empData = service.updateEmployeePayrollData(empID,employeeDTO);
         ResponseDTO respDTO= new ResponseDTO("Updated Employee Payroll Data Successfully", empData);
