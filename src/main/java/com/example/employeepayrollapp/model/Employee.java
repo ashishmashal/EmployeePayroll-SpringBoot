@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.time.LocalDate;
+
 @Data
 @RequiredArgsConstructor
 @Entity
@@ -16,6 +18,9 @@ public class Employee {
     String department;
     String gender;
     long salary;
+    LocalDate startDate;
+    String note;
+    String profilePic;
 
 
   public Employee(int empId,EmployeeDTO employeeDTO) {
@@ -24,6 +29,9 @@ public class Employee {
       this.department = employeeDTO.department;
       this.gender = employeeDTO.gender;
       this.salary = employeeDTO.salary;
+      this.startDate= LocalDate.parse(employeeDTO.startDate);
+      this.note = employeeDTO.note;
+      this.profilePic = employeeDTO.profilePic;
   }
 
     @Id //primary key

@@ -1,8 +1,10 @@
 package com.example.employeepayrollapp.dto;
 
+import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import lombok.Data;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
@@ -11,7 +13,7 @@ import javax.validation.constraints.Pattern;
 
 @Data
 @RequiredArgsConstructor
-public class EmployeeDTO {
+public @ToString class EmployeeDTO {
     @NotNull(message = "Employee Name Cannot be Null")
     @Pattern(regexp = "^[A-Z][a-zA-Z\\s]{2,}$" ,message = "Employee Name Is Incorrect.")
     public String name;
@@ -22,4 +24,11 @@ public class EmployeeDTO {
     @Min(value = 500,message = "Salary Should Be Minimum 500")
     public long salary;
 
+    @NotEmpty(message = "Department Cannot Be Empty.")
+    public String profilePic;
+
+    @NotEmpty(message = "Department Cannot Be Empty.")
+    public String note;
+
+    public String startDate;
 }
