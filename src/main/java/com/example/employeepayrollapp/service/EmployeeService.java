@@ -5,6 +5,7 @@ import com.example.employeepayrollapp.exception.EmployeePayrollException;
 import com.example.employeepayrollapp.model.Employee;
 import com.example.employeepayrollapp.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -49,5 +50,9 @@ public class EmployeeService implements iEmployeeService {
      public String deleteEmployeePayrollData(int empID) {
          employeeRepository.deleteById(empID);
          return "Data Deleted";
+    }
+    @Override
+    public List<Employee> getEmployeesByDepartment(String department) {
+        return employeeRepository.findEmployeeByDepartment(department);
     }
 }

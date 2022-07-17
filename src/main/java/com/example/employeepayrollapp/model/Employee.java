@@ -15,7 +15,7 @@ import java.util.List;
 @Table(name = "employee_payroll")
 public @Data class Employee {
     @Id
-    @Column(name = "id")
+    @Column(name = "employee_id")
     @GeneratedValue
     int id;
     @Column(name = "name")
