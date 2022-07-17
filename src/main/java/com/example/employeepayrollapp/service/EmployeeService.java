@@ -23,7 +23,8 @@ public class EmployeeService implements iEmployeeService {
     }
     @Override
     public Employee  getEmployeePayrollDataById(int empId) {
-        return employeeRepository.findById(empId).orElse(null);
+        return employeeRepository.findById(empId).orElseThrow(() -> new EmployeePayrollException("Employee Id With " +
+                empId + "Does Not Exist"));
     }
     @Override
     public Employee createEmployeePayrollData(EmployeeDTO employeeDTO){
@@ -38,6 +39,9 @@ public class EmployeeService implements iEmployeeService {
             empData.setDepartment(Collections.singletonList(String.valueOf(employeeDTO.department)));
             empData.setGender(employeeDTO.gender);
             empData.setSalary(employeeDTO.salary);
+            empData.setNote(employeeDTO.note);
+            empData.setProfilePic(employeeDTO.profilePic);
+            empData.setStartDate(employeeDTO.startDate);
             employeeRepository.save(empData);
             return empData;
         }

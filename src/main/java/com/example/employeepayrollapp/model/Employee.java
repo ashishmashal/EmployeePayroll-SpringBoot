@@ -1,51 +1,43 @@
 package com.example.employeepayrollapp.model;
 
 import com.example.employeepayrollapp.dto.EmployeeDTO;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
-
+import lombok.*;
+import org.hibernate.Hibernate;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
 
-@Data
-@RequiredArgsConstructor
+
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-public class Employee {
-   @Id
-   @GeneratedValue
-   private int id;
-   private String name;
-   @CollectionTable(name = "department", joinColumns = @JoinColumn(name = "id"))
-   @ElementCollection
-   private List<String> department;
-   private String gender;
-    private long salary;
-   private LocalDate startDate;
-  private String note;
-   private String profilePic;
+@Table(name = "employee_payroll")
+public @Data class Employee {
+    @Id
+    @Column(name = "id")
+    @GeneratedValue
+    int id;
+    @Column(name = "name")
+    private String name;
+    private Long salary;
+    private String gender;
+    private String profilePic;
+    private String note;
+    private LocalDate startDate;
+    @CollectionTable(name = "employee_department",joinColumns = @JoinColumn(name = "id"))
+    @ElementCollection
+    public List<String> department;
 
+    public Employee(EmployeeDTO employeePayrollDTO) {
+        this.id=id;
+        this.name= employeePayrollDTO.name;
+        this.department=employeePayrollDTO.department;
+        this.gender=employeePayrollDTO.gender;
+        this.salary=employeePayrollDTO.salary;
+        this.startDate=employeePayrollDTO.startDate;
+        this.profilePic=employeePayrollDTO.profilePic;
+        this.note=employeePayrollDTO.note;
+    }
 
-  public Employee(int empId,EmployeeDTO employeeDTO) {
-      this.id = empId;
-      this.name = employeeDTO.name;
-      this.department = Collections.singletonList(String.valueOf(employeeDTO.department));
-      this.gender = employeeDTO.gender;
-      this.salary = employeeDTO.salary;
-      this.startDate= employeeDTO.startDate;
-      this.note = employeeDTO.note;
-      this.profilePic = employeeDTO.profilePic;
-  }
-
-    public Employee(EmployeeDTO employeeDTO) {
-        this.name = employeeDTO.name;
-        this.department = Collections.singletonList(String.valueOf(employeeDTO.department));
-        this.gender = employeeDTO.gender;
-        this.salary = employeeDTO.salary;
-        this.startDate= employeeDTO.startDate;
-        this.note = employeeDTO.note;
-        this.profilePic = employeeDTO.profilePic;
-  }
 }
-

@@ -2,7 +2,6 @@ package com.example.employeepayrollapp.exception;
 
 import com.example.employeepayrollapp.dto.ResponseDTO;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -38,7 +37,7 @@ public class CustomException {
             HttpMessageNotReadableException exception) {
         log.error("Invalid Date Format", exception);
         ResponseDTO responseDTO = new ResponseDTO(message,
-                "Should have date in the Format dd MMM yyyy");
+                "Should have date in the Format dd MM yyyy");
         return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.BAD_REQUEST);
     }
 }
