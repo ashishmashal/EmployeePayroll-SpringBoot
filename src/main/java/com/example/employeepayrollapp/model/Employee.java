@@ -40,4 +40,15 @@ public @Data class Employee {
         this.note=employeePayrollDTO.note;
     }
 
+    public Employee(int empId, EmployeeDTO employeePayrollDTO) {
+        this.id=empId;
+        this.name= employeePayrollDTO.name;
+        this.department=employeePayrollDTO.department;
+        this.gender=employeePayrollDTO.gender;
+        this.salary=employeePayrollDTO.salary;
+        this.startDate=employeePayrollDTO.startDate;
+        this.profilePic=employeePayrollDTO.profilePic;
+        this.note=employeePayrollDTO.note;
+    }
+
 }

@@ -35,16 +35,9 @@ public class EmployeeService implements iEmployeeService {
     }
     @Override
     public Employee updateEmployeePayrollData(int empId, EmployeeDTO employeeDTO){
-            Employee empData = this.getEmployeePayrollDataById(empId);
-            empData.setName(employeeDTO.name);
-            empData.setDepartment(Collections.singletonList(String.valueOf(employeeDTO.department)));
-            empData.setGender(employeeDTO.gender);
-            empData.setSalary(employeeDTO.salary);
-            empData.setNote(employeeDTO.note);
-            empData.setProfilePic(employeeDTO.profilePic);
-            empData.setStartDate(employeeDTO.startDate);
-            employeeRepository.save(empData);
-            return empData;
+        Employee employeeDetails=new Employee(empId,employeeDTO);
+        employeeRepository.save(employeeDetails);
+        return employeeDetails;
         }
      @Override
      public String deleteEmployeePayrollData(int empID) {
